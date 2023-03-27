@@ -1,5 +1,4 @@
-# SO-Q75847326-macros-demo
-https://stackoverflow.com/questions/75847326/macro-implementation-not-found-scala-2-13-3
+For [@ZviMints](https://github.com/ZviMints)
 
 ```
 /media/data/jdk-17.0.5/bin/java -server -Xmx1536M -Dsbt.supershell=false -Didea.managed=true -Dfile.encoding=UTF-8 -Didea.installation.dir=/media/data/idea-IU-211.7628.21 -jar /home/dmitin/.local/share/JetBrains/IntelliJIdea2022.3/Scala/launcher/sbt-launch.jar early(addPluginSbtFile=\"\"\"/tmp/idea10.sbt\"\"\") "; set ideaPort in Global := 41083 ; idea-shell"
