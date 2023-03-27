@@ -1,6 +1,6 @@
 package com.dv.phoenix.brandsafety.utils
 
-import com.dv.phoenix.brandsafety.models.RunningStrategies
+import com.dv.phoenix.brandsafety.models.{RunningStrategies, RunningStrategy}
 import com.dv.phoenix.brandsafety.models.RunningStrategy.RunningStrategy
 
 import scala.reflect.macros.blackbox
@@ -10,7 +10,12 @@ object RunningStrategiesMacros {
     import c.universe._
 
     val strategySet = strategies.map(_.tree).toList
-    if (strategySet.contains(q"MonitoringAndBlockingInherent") && strategySet.contains(q"MonitoringAndBlockingRecalculate")) {
+
+    val cond = List("MonitoringAndBlockingInherent", "MonitoringAndBlockingRecalculate")
+      .map(name => typeOf[RunningStrategy.type].decl(TermName(name)))
+      .forall(strategySet.map(_.symbol).contains)
+
+    if (cond) {
       c.abort(c.enclosingPosition, "MonitoringAndBlockingInherent and MonitoringAndBlockingRecalculate cannot be used together")
     }
 
